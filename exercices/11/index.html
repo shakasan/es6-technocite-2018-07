@@ -35,6 +35,16 @@
   // Créer un array ne contenant que le temps en chaine de caractères
   // Créer un array de secondes
   // reduce pour obtenir le total
+  const items=Array.from(document.querySelectorAll('[data-time]'))
+  console.log(items)
+  const filtered = items.filter(item => item.textContent.includes('Ember'))
+  .map(item => item.dataset.time)
+  .map(timecode =>{
+    const parts = timecode.split(':').map(part =>parseFloat(part))
+    return parts[0]*60 + parts[1]
+  })
+  .reduce((secondsTotal,seconds)=>secondsTotal + seconds)
+  console.log(filtered)
 </script>
 </body>
 </html>
