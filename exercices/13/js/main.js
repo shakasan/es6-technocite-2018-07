@@ -1,8 +1,8 @@
 const friends=[
-    {id:1,name:"vincent Urbain",adresse:"rue du tour",n:245,cp:7698,ville:"Saint_symphorien",pays:"belgique",passions:[1,3,5]},
-    {id:2,name:"Stéphane Meermans",adresse:"voie du cours ",n:567,cp:1050,ville:"Overijse",pays:"belgique",passions:[1,2,4]},
-    {id:3,name:"Gilles Bertrand",adresse:"voie Berthe ",n:199,cp:7020,ville:"Jemappes",pays:"belgique",passions:[1,2,4]},
-    {id:4,name:"Joelle hoquart",adresse:"voie Berthe ",n:199,cp:7020,ville:"Jemappes",pays:"belgique",passions:[1,2,4]},
+    {id:1,name:"vincent Urbain",adresse:"rue du tour",n:245,cp:7698,ville:"Saint_symphorien",pays:"belgique",lon:3.8394433999999364,lat:50.4345059,passions:[1,3,5],photo:"vincent.jpg"},
+    {id:2,name:"Stéphane Meermans",adresse:"voie du cours ",n:567,cp:1050,ville:"Overijse",pays:"belgique",lon: 4.3889939,lat:50.832578,passions:[1,2,4],photo:"stephane.jpg"},
+    {id:3,name:"Gilles Bertrand",adresse:"voie Berthe ",n:199,cp:7020,ville:"Jemappes",pays:"belgique",lon:3.8394433999999364,lat:50.4345059,passions:[1,2,4],photo:"gilles.jpg"},
+    {id:4,name:"Joelle hoquart",adresse:"voie Berthe ",n:199,cp:7020,ville:"Jemappes",pays:"belgique",lon: 4.3889939,lat:50.832578,passions:[1,2,4],photo:"joelle.jpg"},
 ];
 const passions = [
     {id:1,title:"Football", description:"kjdshf dskjhf kqjdshf kdsqjfh kjsqdfh kqjsdfhb kjsqhdfkjdsqhkjsqd hfkjdsqhf kjdsbf qsdjkdskjf hsj"},
@@ -14,19 +14,20 @@ const passions = [
 
 const renderMarkup =(template_id,data)=>{
     const templateStrings = [
+        {id:4,markup:` <li class="tag">${data.title}</li>`},
         {id:1,markup:`<li onclick="generateFriendDetails(${data.id})"><a>${data.name}</a></li>`},
-        {id:2,markup:`
+        {id:10,markup:`
         <div class="card-image">
                             <figure class="image is-3by1">
-                                <img src="https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/3.8394433999999364,50.4345059,9.67,0.00,0.00/433x144@2x?access_token=pk.eyJ1IjoidHJpcHR5ayIsImEiOiJjamo1ZWJuYnQxc3Z0M2tuM2ltMnNhZG9oIn0.ba1o5OxBs_kwIsdntxda1A"
-                                    alt="Placeholder image">
+                            <img src="https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/${data.lon},${data.lat},9.67,0.00,0.00/433x144@2x?access_token=pk.eyJ1IjoidHJpcHR5ayIsImEiOiJjamo1ZWJuYnQxc3Z0M2tuM2ltMnNhZG9oIn0.ba1o5OxBs_kwIsdntxda1A"
+                            alt="Placeholder image">
                             </figure>
                         </div>
                         <div class="card-content">
                             <div class="media">
                                 <div class="media-left">
                                     <figure class="image is-48x48">
-                                        <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                                        <img src="images/${data.photo}" alt="Placeholder image">
                                     </figure>
                                 </div>
                                 <div class="media-content">
@@ -40,13 +41,21 @@ const renderMarkup =(template_id,data)=>{
                                 <br /> ${data.pays}
                             </div>
                         </div>
-        `},
+        `}
     ];
     return templateStrings.find(template =>template.id === template_id).markup
 }
 
+const generatePassionsTags = (passionsArr)=>{
+    const passions_tags = $('#passions_tags') 
+    passions_tags.innerHTML =  passionsArr.reduce((prev,next)=>{
+        return `${prev}${renderMarkup(4,passions.find(passion => passion.id === next))}`
+    },'')
+}
 const  generateFriendDetails = function(friend_id){
-    $('#friend_detail').innerHTML=renderMarkup(2,friends.find(friend => friend.id === friend_id));
+    let current_friend = friends.find(friend => friend.id === friend_id)
+    $('#friend_detail').innerHTML=renderMarkup(10,current_friend);
+    generatePassionsTags(current_friend.passions);
 }
 
 const generateFriendsList = () =>{
@@ -54,17 +63,16 @@ const generateFriendsList = () =>{
     let list_markup= friends.reduce((markup,friend)=>{
         return `${markup}${renderMarkup(1,friend)}`
     },'')
-    list.innerHTML = list_markup
-
-
+    list.innerHTML = list_markup;
 }
 const createjQueryLike =()=>{
    window.$ = document.querySelector.bind(document); 
    window.$$ = document.querySelectorAll.bind(document); 
 }
 const init=()=>{
-    createjQueryLike()
-    generateFriendsList()
+    createjQueryLike();
+    generateFriendsList();
 }
 
 init()
+
