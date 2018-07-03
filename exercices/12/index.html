@@ -59,7 +59,7 @@
         let markup = `
         <h1>test of generating</h1>
         <ul>
-            ${buttons.map(button => createButton(button)).join('')}
+            ${buttons.map(button => createLink(button)).join('')}
         </ul>
         `;
         document.querySelector('body').innerHTML=markup
