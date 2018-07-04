@@ -19,6 +19,7 @@
              }
              return tmpArr;
          } */
+        // console.log(double(numbers))
         const doubleNumbers = numbers.map(function (number, index) {
             // console.log(index)
             if (index === 3) return number * 3;
@@ -39,7 +40,7 @@
         // console.log(heights);
         function pluck(array, properties, returnType) {
 
-            if (!Array.isArray(properties) ) {
+            if (!Array.isArray(properties)) {
                 return array.map(function (item) {
                     return item[properties] //renvoie la valeur de la propriété de l'objet passé
                 })
@@ -55,7 +56,7 @@
                     })
                 } else {
                     return array.map(function (item) {
-                        return properties.map(function(property){
+                        return properties.map(function (property) {
                             return item[property];
                         })
                     })
@@ -64,8 +65,8 @@
 
         }
         // console.log(pluck(images, 'width'))
-        console.log(pluck(images, ['width', 'color'],'object'))
-        console.log(pluck(images, ['width', 'color'],'array'))
+        console.log(pluck(images, ['width', 'color'], 'object'))
+        console.log(pluck(images, ['width', 'color'], 'array'))
         // console.log(pluck(images, 'color'))
         let trips = [
             { destination: "Mons", distance: 40 },

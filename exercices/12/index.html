@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Template strings</title>
 </head>
+
 <body>
     <h1>Template strings</h1>
     <div class="container">
@@ -15,12 +17,12 @@
         // let texte =  "ceci est un test de \
         // multiligne\
         // et plus encore";
-    //     let texte =  "ceci est un test de ";
-    //     texte+=" multiligne";
-    //    texte += " et plus encore";
-//         let texte = `ceci est un test de 
-// multiligne
-// et plus encore`;
+        //     let texte =  "ceci est un test de ";
+        //     texte+=" multiligne";
+        //    texte += " et plus encore";
+        //         let texte = `ceci est un test de 
+        // multiligne
+        // et plus encore`;
         // let content = "<b> ceci est vraiment plus dur </b>"
         // let name = "BERTRAND";
         // let person = {
@@ -45,15 +47,15 @@
         // `
         // document.querySelector('body').innerHTML=markup
 
-        let  createLink = (buttonData)=>{
+        let createLink = (buttonData) => {
             return `<li><a href="${buttonData.link}">${buttonData.texte}</a></li>`
         }
 
         let buttons = [
-            {texte : 'triptyk', link :"http://www.triptyk.eu"},
-            {texte : 'technocite', link :"http://www.technocite.be"},
-            {texte : 'ember', link :"https://www.emberjs.com/"},
-            {texte : 'glimmer', link :"https://glimmerjs.com/"},
+            { texte: 'triptyk', link: "http://www.triptyk.eu" },
+            { texte: 'technocite', link: "http://www.technocite.be" },
+            { texte: 'ember', link: "https://www.emberjs.com/" },
+            { texte: 'glimmer', link: "https://glimmerjs.com/" },
         ]
 
         let markup = `
@@ -62,7 +64,8 @@
             ${buttons.map(button => createLink(button)).join('')}
         </ul>
         `;
-        document.querySelector('body').innerHTML=markup
+        document.querySelector('body').innerHTML = markup
     </script>
 </body>
+
 </html>
