@@ -52,6 +52,9 @@ export default class Game {
         do {
           this.applee.setNewPosition(this.widthInBlocks, this.heightInBlocks);
         } while (this.applee.isOnSnake(this.snakee));
+        if (this.score % 5 === 0) {
+          this.speedUp();
+        }
       }
     }
 
@@ -60,5 +63,9 @@ export default class Game {
     Drawing.drawApple(this.ctx, this.blockSize, this.applee);
     Drawing.drawScore(this.ctx, this.centreX, this.centreY, this.score);
     this.timeOut = setTimeout(this.tick.bind(this), this.delay);
+  }
+
+  speedUp() {
+    this.delay /= 2;
   }
 }
