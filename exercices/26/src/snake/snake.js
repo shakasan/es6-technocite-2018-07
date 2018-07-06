@@ -2,6 +2,7 @@ export default class Snake {
   constructor(direction, ...body) {
     this.body = body;
     this.direction = direction;
+    this.ateApple = false;
   }
 
   ramp() {
@@ -23,7 +24,8 @@ export default class Snake {
         throw new Error('Invalid Direction');
     }
     this.body.unshift(nextPosition);
-    this.body.pop();
+    if (!this.ateApple) this.body.pop();
+    else this.ateApple = false;
   }
 
   setDirection(newDirection) {

@@ -16,6 +16,7 @@ export default class Game {
     this.delay = 100;
     this.snakee = null;
     this.applee = null;
+    this.score = 0;
   }
 
   init() {
@@ -31,14 +32,20 @@ export default class Game {
   launch() {
     this.snakee = new Snake('right', [6, 4], [5, 4], [4, 4], [3, 4], [2, 4]);
     this.applee = new Apple();
+    this.score = 0;
+    this.delay = 500;
+    clearTimeout(this.timeOut);
     this.tick();
   }
 
   tick() {
     this.snakee.ramp();
     if (this.snakee.isEatingApple(this.applee)) {
-      console.log('eatTheapple');
-      this.applee.setNewPosition(this.widthInBlocks, this.heightInBlocks);
+      this.score += 1;
+      this.snakee.ateApple = true;
+      do {
+        this.applee.setNewPosition(this.widthInBlocks, this.heightInBlocks);
+      } while (this.applee.isOnSnake(this.snakee));
     }
     this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     Drawing.drawSnake(this.ctx, this.blockSize, this.snakee);

@@ -8,4 +8,14 @@ export default class Apple {
     const newY = Math.round(Math.random() * heightInBlocks - 1);
     this.position = [newX, newY];
   }
+
+  isOnSnake(snakeToCheck) {
+    let isOnSnake = false;
+    snakeToCheck.body.map(block => {
+      if (this.position[0] === block[0] && this.position[1] === block[1]) {
+        isOnSnake = true;
+      }
+    });
+    return isOnSnake;
+  }
 }
