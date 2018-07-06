@@ -33,13 +33,16 @@ export default class Game {
     this.snakee = new Snake('right', [6, 4], [5, 4], [4, 4], [3, 4], [2, 4]);
     this.applee = new Apple();
     this.score = 0;
-    this.delay = 500;
+    this.delay = 300;
     clearTimeout(this.timeOut);
     this.tick();
   }
 
   tick() {
     this.snakee.ramp();
+    if (this.snakee.checkCollision(this.widthInBlocks, this.heightInBlocks)) {
+      console.log('game Over');
+    }
     if (this.snakee.isEatingApple(this.applee)) {
       this.score += 1;
       this.snakee.ateApple = true;

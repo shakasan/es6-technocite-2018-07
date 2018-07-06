@@ -51,4 +51,26 @@ export default class Snake {
     const head = this.body[0];
     if (head[0] === appleToEat.position[0] && head[1] === appleToEat.position[1]) return true;
   }
+
+  checkCollision(widthInBlocks, heightInBlocks) {
+    let wallCollision = false;
+    let snakeCollision = false;
+    const [head, ...rest] = this.body;
+    const [snakeX, snakeY] = head;
+    const minx = 0;
+    const minY = 0;
+    const maxX = widthInBlocks - 1;
+    const maxY = heightInBlocks - 1;
+    const isNotBetweenHorizontalWalls = snakeX < minx || snakeX > maxX;
+    const isNotBetweenVerticalWalls = snakeY < minY || snakeY > maxY;
+    if (isNotBetweenHorizontalWalls || isNotBetweenVerticalWalls) {
+      wallCollision = true;
+    }
+    rest.map(block => {
+      if (snakeX === block[0] && snakeY === block[1]) {
+        snakeCollision = true;
+      }
+    });
+    return wallCollision || snakeCollision;
+  }
 }
