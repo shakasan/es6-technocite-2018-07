@@ -21,4 +21,32 @@ export default class Drawing {
     ctx.fill();
     ctx.restore();
   }
+
+  static drawScore(ctx, centreX, centreY, score) {
+    ctx.save();
+    ctx.font = 'bold 200px sans-serif';
+    ctx.fillStyle = 'gray';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(score.toString(), centreX, centreY);
+    ctx.restore();
+  }
+
+  static gameOver(ctx, centreX, centreY) {
+    ctx.save();
+    ctx.font = 'bold 70px sans-serif';
+    ctx.fillStyle = '#000';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.strokeStyle = 'white';
+    ctx.lineWidth = 5;
+    console.log(centreX);
+    ctx.strokeText('Game Over', centreX, centreY - 180);
+    ctx.fillText('Game Over', centreX, centreY - 180);
+    ctx.font = 'bold 30px sans-serif';
+    ctx.strokeText('appuyer sur la touche espace pour rejouer', centreX, centreY - 120);
+    ctx.fillText('appuyer sur la touche espace pour rejouer', centreX, centreY - 120);
+    ctx.restore();
+    console.log(ctx);
+  }
 }
