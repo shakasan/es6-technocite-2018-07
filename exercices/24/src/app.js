@@ -1,8 +1,8 @@
 import Application from './modules/application';
 
-const app = new Application('https://picsum.photos/list');
-
-app.loadJson().then(result => {
-  console.log(result);
+async function init() {
+  const app = new Application('https://picsum.photos/list');
+  await app.loadJson();
   document.querySelector('#wrapper ul').innerHTML = app.getTitles();
-});
+}
+init();
