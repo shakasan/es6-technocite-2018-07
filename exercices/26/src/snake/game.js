@@ -8,6 +8,8 @@ export default class Game {
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
     this.blockSize = 30;
+    this.widthInBlocks = this.canvasWidth / this.blockSize;
+    this.heightInBlocks = this.canvasHeight / this.blockSize;
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
     this.timeout = null;
@@ -34,6 +36,10 @@ export default class Game {
 
   tick() {
     this.snakee.ramp();
+    if (this.snakee.isEatingApple(this.applee)) {
+      console.log('eatTheapple');
+      this.applee.setNewPosition(this.widthInBlocks, this.heightInBlocks);
+    }
     this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     Drawing.drawSnake(this.ctx, this.blockSize, this.snakee);
     Drawing.drawApple(this.ctx, this.blockSize, this.applee);

@@ -44,4 +44,9 @@ export default class Snake {
       this.direction = newDirection;
     }
   }
+
+  isEatingApple(appleToEat) {
+    const head = this.body[0];
+    if (head[0] === appleToEat.position[0] && head[1] === appleToEat.position[1]) return true;
+  }
 }
