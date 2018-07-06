@@ -1,5 +1,8 @@
 /* global window document */
+import Game from './snake/game';
+
 window.onload = () => {
+  const snakeGame = new Game();
   document.addEventListener('keydown', e => {
     const key = e.keyCode;
     let newDirection;
@@ -20,4 +23,5 @@ window.onload = () => {
     }
     console.log(newDirection);
   });
+  snakeGame.init();
 };
