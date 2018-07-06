@@ -1,5 +1,6 @@
+/* global window document */
 window.onload = () => {
-  document.onkeydown = e => {
+  document.addEventListener('keydown', e => {
     const key = e.keyCode;
     let newDirection;
     switch (key) {
@@ -18,5 +19,5 @@ window.onload = () => {
       default:
     }
     console.log(newDirection);
-  };
+  });
 };
