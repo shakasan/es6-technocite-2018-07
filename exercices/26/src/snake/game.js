@@ -10,6 +10,8 @@ export default class Game {
     this.blockSize = 30;
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
+    this.timeout = null;
+    this.delay = 100;
     this.snakee = null;
     this.applee = null;
   }
@@ -31,8 +33,10 @@ export default class Game {
   }
 
   tick() {
+    this.snakee.ramp();
     this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     Drawing.drawSnake(this.ctx, this.blockSize, this.snakee);
     Drawing.drawApple(this.ctx, this.blockSize, this.applee);
+    this.timeOut = setTimeout(this.tick.bind(this), this.delay);
   }
 }

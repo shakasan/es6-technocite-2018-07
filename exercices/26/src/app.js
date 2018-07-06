@@ -17,14 +17,14 @@ window.onload = () => {
         newDirection = 'right';
         break;
       case 40:
-        newDirection = 'bottom';
+        newDirection = 'down';
         break;
       case 32:
         snakeGame.launch();
         break;
       default:
     }
-    console.log(newDirection);
+    snakeGame.snakee.setDirection(newDirection);
   });
   snakeGame.init();
 };
