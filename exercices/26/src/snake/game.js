@@ -1,5 +1,6 @@
 import Snake from './snake';
 import Drawing from './drawing';
+import Apple from './apple';
 
 /* global document */
 export default class Game {
@@ -10,6 +11,7 @@ export default class Game {
     this.canvas = document.createElement('canvas');
     this.ctx = this.canvas.getContext('2d');
     this.snakee = null;
+    this.applee = null;
   }
 
   init() {
@@ -24,11 +26,13 @@ export default class Game {
 
   launch() {
     this.snakee = new Snake('right', [6, 4], [5, 4], [4, 4], [3, 4], [2, 4]);
+    this.applee = new Apple();
     this.tick();
   }
 
   tick() {
     this.ctx.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     Drawing.drawSnake(this.ctx, this.blockSize, this.snakee);
+    Drawing.drawApple(this.ctx, this.blockSize, this.applee);
   }
 }
