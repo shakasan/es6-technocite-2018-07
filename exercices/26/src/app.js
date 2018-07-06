@@ -19,6 +19,9 @@ window.onload = () => {
       case 40:
         newDirection = 'bottom';
         break;
+      case 32:
+        snakeGame.launch();
+        break;
       default:
     }
     console.log(newDirection);
